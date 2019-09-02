@@ -1,5 +1,0 @@
-Site Created
-
-Admin URL: https://app.netlify.com/sites/pomme-odoro
-URL:       https://pomme-odoro.netlify.com
-Site ID:   bd4f3cda-359a-49bf-97fb-0a2877ac982b
