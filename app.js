@@ -1,16 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import Timer from "./components/timer";
+import "./components/timer.css";
 
+const App = () => (
+    <React.Fragment>
+        <div className={"content"}>
+            <Timer />
+        </div>
+    </React.Fragment>
+);
 
-function tick() {
-  const element = (
-    <div>
-      <h1>Hello, world!</h1>
-      <h2>It is {new Date().toLocaleTimeString()}.</h2>
-    </div>
-  );
-
-  ReactDOM.render(element, document.getElementById('root'));
-}
-
-setInterval(tick, 1000);
+ReactDOM.render(<App />, document.querySelector("#root"));
