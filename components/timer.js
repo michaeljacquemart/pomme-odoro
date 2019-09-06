@@ -21,7 +21,7 @@ export default class App extends React.Component {
             prevTime: 1500,
             time: 1500,
             running: false,
-            message: "This is a message",
+            message: "My message",
         };
         this.toggleTimer = this.toggleTimer.bind(this);
         this.incrementTime = this.incrementTime.bind(this);
@@ -49,29 +49,25 @@ export default class App extends React.Component {
             this.time();
         } else if (running === true) {
             this.setState(() => ({
-                message: "Please stay focused",
+                message: "Focus !",
             }));
         }
     }
     incrementTime() {
         if (this.state.running === false) {
             this.setState(prefState => ({
-                time: prefState.time + 300,
-                prevTime: prefState.prevTime + 300,
+                time: prefState.time + 60,
+                prevTime: prefState.prevTime + 60,
             }));
-        } /* else {
-            null;
-        }*/
+        }
     }
     decrementTime() {
         if (this.state.running === false) {
             this.setState(prefState => ({
-                time: prefState.time - 300,
-                prevTime: prefState.prevTime - 300,
+                time: prefState.time - 60,
+                prevTime: prefState.prevTime - 60,
             }));
-        } /*else {
-            null;
-        }*/
+        }
     }
 
     resetTimer() {

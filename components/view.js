@@ -17,11 +17,13 @@ export default class View extends React.Component {
                             {"Start"}
                         </button>
                         <button
+                            id={"plus"}
                             type={"button"}
                             onClick={() => this.props.incrementTime()}>
                             {"+"}
                         </button>
                         <button
+                            id={"minus"}
                             type={"button"}
                             onClick={() => this.props.decrementTime()}>
                             {"-"}
@@ -34,7 +36,7 @@ export default class View extends React.Component {
                     </div>
                 </div>
                 <div id={"content"}>
-                    <div id={"Title"}>{"Pomodoro"}</div>
+                    <div id={"Title"}>{"A simple Pomodoro"}</div>
                 </div>
             </div>
         );
