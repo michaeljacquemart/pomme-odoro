@@ -1,48 +1,97 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
+import View from "./view";
 
-const Timer = () => {
-    const [seconds, setSeconds] = useState(0);
-    const [isActive, setIsActive] = useState(false);
-
-    function toggle() {
-        setIsActive(!isActive);
+const format = time => {
+    let timeStr = "";
+    const zero = "0";
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    if (seconds < 10) {
+        timeStr = `${minutes}:${zero}${seconds}`;
+    } else {
+        timeStr = `${minutes}:${seconds}`;
     }
 
-    function reset() {
-        setSeconds(0);
-        setIsActive(false);
-    }
-
-    useEffect(() => {
-        let interval = null;
-        if (isActive) {
-            interval = setInterval(() => {
-                setSeconds(s => s + 1);
-            }, 1000);
-        } else if (!isActive && seconds !== 0) {
-            clearInterval(interval);
-        }
-        return () => clearInterval(interval);
-    }, [isActive, seconds]);
-
-    return (
-        <div className={"app"}>
-            <div className={"time"}>{seconds}</div>
-            <div className={"row"}>
-                <button
-                    type={"button"}
-                    className={`button button-primary button-primary-${
-                        isActive ? "active" : "inactive"
-                    }`}
-                    onClick={toggle}>
-                    {isActive ? "Pause" : "Start"}
-                </button>
-                <button type={"button"} className={"button"} onClick={reset}>
-                    {/* Reset */}
-                </button>
-            </div>
-        </div>
-    );
+    return timeStr;
 };
+export default class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            prevTime: 1500,
+            time: 1500,
+            running: false,
+            message: "This is a message",
+        };
+        this.toggleTimer = this.toggleTimer.bind(this);
+        this.incrementTime = this.incrementTime.bind(this);
+        this.decrementTime = this.decrementTime.bind(this);
+        this.resetTimer = this.resetTimer.bind(this);
+    }
+    time() {
+        const ref = setInterval(() => {
+            if (this.state.time <= 0 || this.state.running === false) {
+                clearInterval(ref);
+            } else {
+                this.setState(prefState => ({
+                    time: prefState.time - 1,
+                }));
+            }
+        }, 1000);
+    }
 
-export default Timer;
+    toggleTimer() {
+        const running = this.state.running;
+        if (running === false) {
+            this.setState(() => ({
+                running: true,
+            }));
+            this.time();
+        } else if (running === true) {
+            this.setState(() => ({
+                message: "Please stay focused",
+            }));
+        }
+    }
+    incrementTime() {
+        if (this.state.running === false) {
+            this.setState(prefState => ({
+                time: prefState.time + 300,
+                prevTime: prefState.prevTime + 300,
+            }));
+        } /* else {
+            null;
+        }*/
+    }
+    decrementTime() {
+        if (this.state.running === false) {
+            this.setState(prefState => ({
+                time: prefState.time - 300,
+                prevTime: prefState.prevTime - 300,
+            }));
+        } /*else {
+            null;
+        }*/
+    }
+
+    resetTimer() {
+        this.setState(prevState => ({
+            running: false,
+            time: prevState.prevTime,
+        }));
+    }
+
+    render() {
+        return (
+            <div>
+                <View
+                    displayTime={format(this.state.time)}
+                    startTimer={this.toggleTimer}
+                    incrementTime={this.incrementTime}
+                    decrementTime={this.decrementTime}
+                    resetTimer={this.resetTimer}
+                />
+            </div>
+        );
+    }
+}
