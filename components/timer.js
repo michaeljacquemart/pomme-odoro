@@ -29,9 +29,9 @@ export default class App extends React.Component {
         this.resetTimer = this.resetTimer.bind(this);
     }
     time() {
-        const ref = setInterval(() => {
+        const REF = setInterval(() => {
             if (this.state.time <= 0 || this.state.running === false) {
-                clearInterval(ref);
+                clearInterval(REF);
             } else {
                 this.setState(prefState => ({
                     time: prefState.time - 1,
@@ -41,13 +41,13 @@ export default class App extends React.Component {
     }
 
     toggleTimer() {
-        const running = this.state.running;
-        if (running === false) {
+        const RUNNING = this.state.running;
+        if (RUNNING === false) {
             this.setState(() => ({
                 running: true,
             }));
             this.time();
-        } else if (running === true) {
+        } else if (RUNNING === true) {
             this.setState(() => ({
                 message: "Focus, for God's sake !",
             }));

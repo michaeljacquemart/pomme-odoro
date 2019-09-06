@@ -7,8 +7,11 @@ export default class View extends React.Component {
     }
     render() {
         return (
-            <div id={"timer"}>
-                <div id={"clock"}>
+            <div>
+                <div id={"content"}>
+                    <div id={"Title"}>{"Get your lazy ass to work !"}</div>
+                </div>
+                <div>
                     <div id={"time"}>{this.props.displayTime}</div>
                     <div id={"buttons"}>
                         <button
@@ -34,9 +37,6 @@ export default class View extends React.Component {
                             {"Reset"}
                         </button>
                     </div>
-                </div>
-                <div id={"content"}>
-                    <div id={"Title"}>{"Get your lazy ass to work !"}</div>
                 </div>
             </div>
         );
