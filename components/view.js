@@ -36,7 +36,7 @@ export default class View extends React.Component {
                     </div>
                 </div>
                 <div id={"content"}>
-                    <div id={"Title"}>{"A simple Pomodoro"}</div>
+                    <div id={"Title"}>{"Get your lazy ass to work !"}</div>
                 </div>
             </div>
         );

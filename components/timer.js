@@ -2,17 +2,17 @@ import React from "react";
 import View from "./view";
 
 const format = time => {
-    let timeStr = "";
-    const zero = "0";
-    const minutes = Math.floor(time / 60);
-    const seconds = time % 60;
-    if (seconds < 10) {
-        timeStr = `${minutes}:${zero}${seconds}`;
+    let tempStr = "";
+    const ZERO = "0";
+    const MIN = Math.floor(time / 60);
+    const SEC = time % 60;
+    if (SEC < 10) {
+        tempStr = `${MIN}:${ZERO}${SEC}`;
     } else {
-        timeStr = `${minutes}:${seconds}`;
+        tempStr = `${MIN}:${SEC}`;
     }
 
-    return timeStr;
+    return tempStr;
 };
 export default class App extends React.Component {
     constructor(props) {
@@ -49,7 +49,7 @@ export default class App extends React.Component {
             this.time();
         } else if (running === true) {
             this.setState(() => ({
-                message: "Focus !",
+                message: "Focus, for God's sake !",
             }));
         }
     }
